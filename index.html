@@ -83,7 +83,12 @@ h2 {
   </style>
 </head>
 <body>
-  <div class="container">
+  <div id="welcome-overlay" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    <h2 style="color:#fff700;">¡Bienvenido!</h2>
+    <p style="color:white;">Toca para ver la invitación y escuchar la música 🎶</p>
+    <button id="enter-btn" style="padding:15px 30px;font-size:1.2rem;border-radius:30px;border:none;background:#fff700;color:#000;font-weight:bold;box-shadow:0 0 10px #ff00ff;">Entrar</button>
+  </div>
+  <div class="container" style="filter:blur(4px);" id="main-content">
     <h1>¡María cumple 80 años! 🎉</h1>
     <h2>Te invitamos a celebrar juntos</h2>
   <img src="img/cumpleañera.jpeg" alt="Foto de María" class="photo" />
@@ -146,5 +151,13 @@ h2 {
 
     const interval = setInterval(updateCountdown, 1000);
     updateCountdown();
+  // Overlay para iniciar música en móviles
+  document.getElementById('enter-btn').addEventListener('click', function() {
+    document.getElementById('welcome-overlay').style.display = 'none';
+    document.getElementById('main-content').style.filter = 'none';
+    var audio = document.querySelector('audio');
+    if (audio) audio.play();
+  });
+  // ...resto del código...
   </script></body>
 </html>
